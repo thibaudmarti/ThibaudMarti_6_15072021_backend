@@ -7,6 +7,7 @@ const userRoutes = require("./routes/user");
 const path = require("path");
 const morgan = require("morgan");
 require("dotenv").config();
+const helmet = require("helmet");
 
 mongoose
   .connect(process.env.CONNECT_MDB, {
@@ -17,6 +18,10 @@ mongoose
   .catch(() => console.log("Connexion à MongoDB échouée !"));
 
 const app = express();
+
+app.use(helmet());
+app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
+
 app.use(morgan("dev"));
 
 app.use((req, res, next) => {
