@@ -1,3 +1,4 @@
+// import HTTP package to create a server
 const http = require("http");
 const app = require("./app");
 
@@ -12,9 +13,11 @@ const normalizePort = (val) => {
   }
   return false;
 };
+// return a valid port
 const port = normalizePort(process.env.PORT || "3000");
 app.set("port", port);
 
+// find errors and handle them
 const errorHandler = (error) => {
   if (error.syscall !== "listen") {
     throw error;
@@ -39,6 +42,7 @@ const errorHandler = (error) => {
 const server = http.createServer(app);
 
 server.on("error", errorHandler);
+// Listen port
 server.on("listening", () => {
   const address = server.address();
   const bind = typeof address === "string" ? "pipe " + address : "port " + port;

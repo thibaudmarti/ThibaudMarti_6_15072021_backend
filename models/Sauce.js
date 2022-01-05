@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+// using mongoose's SCHEMA method to create a data schema
 const sauceSchema = mongoose.Schema({
   userId: { type: String, required: true },
   name: { type: String, required: true },
